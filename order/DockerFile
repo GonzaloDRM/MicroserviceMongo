@@ -1,0 +1,8 @@
+FROM openjdk:8-jdk-alpine
+MAINTAINER microservice.order.com
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} order1.jar
+EXPOSE 8002
+ENTRYPOINT ["java", "-jar", "/order1.jar"]
